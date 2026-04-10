@@ -415,6 +415,8 @@ Este proyecto genera **7 gráficos profesionales** que facilitan la interpretaci
 
 **Interpretación:** El gráfico revela que sexo y clase fueron factores determinantes en supervivencia.
 
+![Análisis de Supervivencia - Variables Demográficas y Socioeconómicas](Titanic_KDD/graficos/01_supervivencia_basico.png)
+
 ---
 
 ### 📈 Gráfico 2: Análisis de Distribuciones - Edad y Tarifa
@@ -437,6 +439,8 @@ Este proyecto genera **7 gráficos profesionales** que facilitan la interpretaci
    - Diferencia de **2.19 veces** en tarifa media
 
 **Interpretación:** Pasajeros mayores pagaban más (mejor ubicación en el barco) y tenían mayor acceso a botes salvavidas.
+
+![Análisis de Distribuciones - Edad y Tarifa](Titanic_KDD/graficos/02_distribuciones.png)
 
 ---
 
@@ -468,6 +472,8 @@ Este proyecto genera **7 gráficos profesionales** que facilitan la interpretaci
 
 **Interpretación:** La matriz revela multicolinealidad entre SibSp/Parch (correlación 0.89) pero relaciones importantes con el target.
 
+![Matriz de Correlación - Variables Numéricas](Titanic_KDD/graficos/03_correlacion.png)
+
 ---
 
 ### 🎯 Gráfico 4: Matriz de Confusión - Evaluación del Modelo
@@ -497,6 +503,8 @@ Realidad No S.         97               13
 
 **Interpretación:** El modelo clasifica correctamente 4 de 5 casos; mejor en identificar no-sobrevivientes que sobrevivientes.
 
+![Matriz de Confusión - Evaluación del Modelo](Titanic_KDD/graficos/04_matriz_confusion.png)
+
 ---
 
 ### 📊 Gráfico 5: Importancia de Variables - Coeficientes del Modelo
@@ -524,6 +532,8 @@ Realidad No S.         97               13
 
 **Conclusión:** Sex domina completamente el modelo con impacto **12.16 veces** mayor de probabilidad.
 
+![Importancia de Variables - Coeficientes del Modelo](Titanic_KDD/graficos/05_importancia_variables.png)
+
 ---
 
 ### 📉 Gráfico 6: Curva ROC - Análisis del Modelo
@@ -548,6 +558,8 @@ Realidad No S.         97               13
 - **0.90-1.00:** Discriminación excepcional
 
 **Conclusión:** AUC=0.8569 indica **EXCELENTE capacidad predictiva** del modelo. El modelo discrimina bien entre sobrevivientes y no-sobrevivientes.
+
+![Curva ROC - Análisis del Modelo](Titanic_KDD/graficos/06_curva_roc.png)
 
 ---
 
@@ -577,6 +589,8 @@ Realidad No S.         97               13
 **Línea punteada vertical:** Umbral de decisión (probabilidad = 0.5)
 
 **Interpretación:** La separación clara entre distribuciones roja y verde indica que el modelo aprende patrones significativos y realiza predicciones bien calibradas. La superposición en el centro refleja los casos difíciles (casos límite donde el modelo es menos seguro).
+
+![Distribución de Probabilidades Predichas](Titanic_KDD/graficos/07_distribucion_probabilidades.png)
 
 ---
 
