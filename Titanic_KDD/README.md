@@ -189,19 +189,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn scipy
 ---
 
 ## Autor
-**Laboratorio 1 - Curso de Ciencia de Datos**  
-Universidad de Pamplona  
-Código FGA-154 v.00  
-Fecha: 10 de Abril de 2026
-
+- **Jefferson David Mejia Torres** - CC 1004924867
+- **Daniel Felipe Contreras Caballero** - CC 1005077931
+**Laboratorio 1 - Curso de Ciencia de Datos**
 ---
-
-## Entrega
-
-Envía a: **abelfer.beca@unipamplona.edu.co**  
-Límite: **9:00 AM**  
-Archivos requeridos:
-- ✓ `INFORME_FINAL.md`
-- ✓ Carpeta `scripts/` (con todos los .py)
-- ✓ Carpeta `datos/` (con datos procesados)
-- ✓ Carpeta `graficos/` (con visualizaciones)
