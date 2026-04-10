@@ -44,7 +44,7 @@ print("PASO 5: MINERÍA DE DATOS - MODELADO CON REGRESIÓN LOGÍSTICA")
 print("="*80 + "\n")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(script_dir, "df_transformado.csv"))
+df = pd.read_csv(os.path.join(script_dir, "..", "datos", "df_transformado.csv"))
 print(f"Dataset transformado cargado: {df.shape[0]} filas x {df.shape[1]} columnas\n")
 
 # Imputar valores faltantes en Age con la mediana
@@ -107,7 +107,7 @@ print("-"*80 + "\n")
 modelo = LogisticRegression(random_state=42, max_iter=1000)
 modelo.fit(X_train, y_train)
 
-print("✓ Modelo de Regresión Logística entrenado exitosamente")
+print("OK Modelo de Regresión Logística entrenado exitosamente")
 print(f"  - Algoritmo: Logistic Regression")
 print(f"  - Muestras de entrenamiento: {len(X_train)}")
 print(f"  - Variables del modelo: {X_train.shape[1]}")
@@ -124,7 +124,7 @@ y_train_pred = modelo.predict(X_train)
 y_test_pred = modelo.predict(X_test)
 y_test_proba = modelo.predict_proba(X_test)[:, 1]  # Probabilidades
 
-print("✓ Predicciones generadas para ambos conjuntos")
+print("OK Predicciones generadas para ambos conjuntos")
 
 # ============================================================================
 # 6. EVALUACIÓN DEL MODELO - METRICAS DE RENDIMIENTO
@@ -195,12 +195,12 @@ print("\n\nINTERPRETACIÓN DE VARIABLES CRÍTICAS:")
 print("\nVARIABLES CON MAYOR IMPACTO POSITIVO (Aumentan supervivencia):")
 positivos = coef_df[coef_df['Coeficiente'] > 0].head(5)
 for idx, row in positivos.iterrows():
-    print(f"  ✓ {row['Variable']:20} : {row['Coeficiente']:+.4f}")
+    print(f"  OK {row['Variable']:20} : {row['Coeficiente']:+.4f}")
 
 print("\nVARIABLES CON MAYOR IMPACTO NEGATIVO (Reducen supervivencia):")
 negativos = coef_df[coef_df['Coeficiente'] < 0].head(5)
 for idx, row in negativos.iterrows():
-    print(f"  ✗ {row['Variable']:20} : {row['Coeficiente']:+.4f}")
+    print(f"  X {row['Variable']:20} : {row['Coeficiente']:+.4f}")
 
 # ============================================================================
 # 8. VISUALIZACIONES
@@ -209,7 +209,7 @@ print("\n" + "-"*80)
 print("5.7 GENERANDO VISUALIZACIONES")
 print("-"*80 + "\n")
 
-graficos_dir = os.path.join(script_dir, "graficos")
+graficos_dir = os.path.join(script_dir, "..", "graficos")
 if not os.path.exists(graficos_dir):
     os.makedirs(graficos_dir)
 
@@ -225,7 +225,7 @@ ax.set_xlabel('Predicción', fontweight='bold')
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '04_matriz_confusion.png'), dpi=300, bbox_inches='tight')
 plt.close()
-print("✓ Gráfico 04 guardado: matriz_confusion.png")
+print("OK Gráfico 04 guardado: matriz_confusion.png")
 
 # Figura 2: Importancia de variables (coeficientes)
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -237,7 +237,7 @@ ax.axvline(x=0, color='black', linestyle='-', linewidth=0.8)
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '05_importancia_variables.png'), dpi=300, bbox_inches='tight')
 plt.close()
-print("✓ Gráfico 05 guardado: importancia_variables.png")
+print("OK Gráfico 05 guardado: importancia_variables.png")
 
 # Figura 3: Curva ROC
 fpr, tpr, thresholds = roc_curve(y_test, y_test_proba)
@@ -254,7 +254,7 @@ ax.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '06_curva_roc.png'), dpi=300, bbox_inches='tight')
 plt.close()
-print("✓ Gráfico 06 guardado: curva_roc.png")
+print("OK Gráfico 06 guardado: curva_roc.png")
 
 # Figura 4: Distribución de probabilidades predichas
 fig, ax = plt.subplots(figsize=(10, 6))
@@ -268,7 +268,7 @@ ax.axvline(x=0.5, color='black', linestyle='--', linewidth=1, label='Umbral (0.5
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '07_distribucion_probabilidades.png'), dpi=300, bbox_inches='tight')
 plt.close()
-print("✓ Gráfico 07 guardado: distribucion_probabilidades.png")
+print("OK Gráfico 07 guardado: distribucion_probabilidades.png")
 
 # ============================================================================
 # 9. RESUMEN EJECUTIVO
@@ -310,10 +310,10 @@ VARIABLES CRÍTICAS IDENTIFICADAS (Top 5):
 5. {coef_df.iloc[4]['Variable']:20} : {coef_df.iloc[4]['Coeficiente']:+.6f}
 
 INTERPRETACIÓN CLAVE:
-  ✓ El modelo tiene un buen desempeño general
-  ✓ La variable MÁS IMPORTANTE es: {coef_df.iloc[0]['Variable']}
-  ✓ Las características de género, clase y edad fueron críticas
-  ✓ El modelo puede generalizar bien a nuevos datos
+  OK El modelo tiene un buen desempeño general
+  OK La variable MÁS IMPORTANTE es: {coef_df.iloc[0]['Variable']}
+  OK Las características de género, clase y edad fueron críticas
+  OK El modelo puede generalizar bien a nuevos datos
 
 MATRIZ DE CONFUSIÓN:
   - Verdaderos Negativos (TN): {cm[0,0]}  (Correctamente identificados como no sobrevivieron)
@@ -330,7 +330,7 @@ CONCLUSIONES:
 
 print(resumen)
 
-print("\n✓ PASO 5 COMPLETADO\n")
+print("\nOK PASO 5 COMPLETADO\n")
 
 print("="*80)
 print("PROCESO KDD COMPLETADO EXITOSAMENTE")

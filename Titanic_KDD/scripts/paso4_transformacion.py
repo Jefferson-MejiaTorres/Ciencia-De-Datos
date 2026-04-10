@@ -33,8 +33,8 @@ print("PASO 4: TRANSFORMACIÓN DE DATOS Y FEATURE ENGINEERING")
 print("="*80 + "\n")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(script_dir, "df_limpio.csv"))
-df_original = pd.read_csv(os.path.join(script_dir, "df_original.csv"))
+df = pd.read_csv(os.path.join(script_dir, "..", "datos", "df_limpio.csv"))
+df_original = pd.read_csv(os.path.join(script_dir, "..", "datos", "df_original.csv"))
 print(f"Dataset limpio cargado: {df.shape[0]} filas x {df.shape[1]} columnas\n")
 
 # ============================================================================
@@ -71,7 +71,7 @@ print("    female → 1")
 print("    male   → 0")
 sex_mapping = {'female': 1, 'male': 0}
 df_transformed['Sex'] = df_transformed['Sex'].map(sex_mapping)
-print(f"    ✓ Transformada: Sex")
+print(f"    OK Transformada: Sex")
 
 # 3.2 Codificación de Embarked (One-Hot Encoding)
 print("\n>>> Variable 'Embarked' (One-Hot Encoding):")
@@ -189,10 +189,10 @@ print("4.7 VERIFICACIÓN FINAL DE INTEGRIDAD")
 print("-"*80 + "\n")
 
 print(f"Valores nulos en dataset transformado: {df_transformed.isnull().sum().sum()}")
-print(f"✓ No hay valores faltantes" if df_transformed.isnull().sum().sum() == 0 else "Advertencia: Hay valores nulos")
+print(f"OK No hay valores faltantes" if df_transformed.isnull().sum().sum() == 0 else "Advertencia: Hay valores nulos")
 
 print(f"\nDuplicados completos: {df_transformed.duplicated().sum()}")
-print(f"✓ Sin duplicados" if df_transformed.duplicated().sum() == 0 else "Advertencia: Hay duplicados")
+print(f"OK Sin duplicados" if df_transformed.duplicated().sum() == 0 else "Advertencia: Hay duplicados")
 
 # ============================================================================
 # 9. RESUMEN EJECUTIVO
@@ -205,24 +205,24 @@ resumen = f"""
 TRANSFORMACIONES REALIZADAS:
 
 1. CODIFICACIÓN DE VARIABLES CATEGÓRICAS:
-   ✓ Sex: Binaria (female=1, male=0)
-   ✓ Embarked: One-Hot Encoding (3 variables dummy)
+   OK Sex: Binaria (female=1, male=0)
+   OK Embarked: One-Hot Encoding (3 variables dummy)
    → Total variables categóricas codificadas: 2
 
 2. FEATURE ENGINEERING - NUEVAS CARACTERÍSTICAS:
-   ✓ IsChild: Indicador de menores (edad < 15)
+   OK IsChild: Indicador de menores (edad < 15)
      Coeficiente de correlación con Survived: {df_transformed.corr()['Survived']['IsChild']:.4f}
    
-   ✓ IsAlone: Indicador de viajante solo (FamilySize=1)
+   OK IsAlone: Indicador de viajante solo (FamilySize=1)
      Coeficiente de correlación con Survived: {df_transformed.corr()['Survived']['IsAlone']:.4f}
    
-   ✓ FamilyGroupSize: Categorización en 4 grupos
+   OK FamilyGroupSize: Categorización en 4 grupos
      Coeficiente de correlación con Survived: {df_transformed.corr()['Survived']['FamilyGroupSize']:.4f}
    
-   ✓ HasCabin: Indicador de información de camarote
+   OK HasCabin: Indicador de información de camarote
      Coeficiente de correlación con Survived: {df_transformed.corr()['Survived']['HasCabin']:.4f}
    
-   ✓ HigherClass: Indicador de clase premium (1-2)
+   OK HigherClass: Indicador de clase premium (1-2)
      Coeficiente de correlación con Survived: {df_transformed.corr()['Survived']['HigherClass']:.4f}
 
 3. VARIABLES FINALES DEL DATASET:
@@ -231,9 +231,9 @@ TRANSFORMACIONES REALIZADAS:
    - Variables explicativas: {df_transformed.shape[1] - 1}
 
 4. INTEGRIDAD DE DATOS:
-   ✓ Valores nulos: 0
-   ✓ Duplicados completos: 0
-   ✓ Todas las variables numéricas
+   OK Valores nulos: 0
+   OK Duplicados completos: 0
+   OK Todas las variables numéricas
 
 PRÓXIMOS PASOS:
 → División en conjuntos de entrenamiento y prueba
@@ -247,7 +247,7 @@ print(resumen)
 # 10. GUARDAR DATASET TRANSFORMADO
 # ============================================================================
 df_transformed.to_csv(os.path.join(script_dir, "df_transformado.csv"), index=False)
-print(f"\n✓ Dataset transformado guardado en: df_transformado.csv")
+print(f"\nOK Dataset transformado guardado en: df_transformado.csv")
 
 print("\n" + "="*80)
 print("PASO 4 COMPLETADO")

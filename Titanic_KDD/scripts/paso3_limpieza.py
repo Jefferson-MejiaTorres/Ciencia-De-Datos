@@ -32,7 +32,7 @@ print("PASO 3: LIMPIEZA Y PREPROCESAMIENTO DE DATOS")
 print("="*80 + "\n")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(script_dir, "df_original.csv"))
+df = pd.read_csv(os.path.join(script_dir, "..", "datos", "df_original.csv"))
 print(f"Dataset original: {df.shape[0]} filas x {df.shape[1]} columnas")
 
 # ============================================================================
@@ -79,7 +79,7 @@ print(f"    - Media: {age_mean:.2f}")
 print(f"    - Mediana: {age_median:.2f}")
 print(f"    Acción: Llenar con la MEDIANA (más robusta frente a outliers)")
 df_cleaned['Age'].fillna(age_median, inplace=True)
-print(f"    ✓ Valores nulos en Age imputados: {(df['Age'].isnull().sum() - df_cleaned['Age'].isnull().sum())} registros")
+print(f"    OK Valores nulos en Age imputados: {(df['Age'].isnull().sum() - df_cleaned['Age'].isnull().sum())} registros")
 
 # 3.3 Manejar valores nulos en 'Embarked'
 print("\n>>> Estrategia para 'Embarked' (0.22% nulos):")
@@ -87,7 +87,7 @@ embarked_mode = df_cleaned['Embarked'].mode()[0]
 print(f"    Valor más frecuente: {embarked_mode} (Southampton)")
 print(f"    Acción: Llenar con la MODA")
 df_cleaned['Embarked'].fillna(embarked_mode, inplace=True)
-print(f"    ✓ Valores nulos en Embarked imputados: {(df['Embarked'].isnull().sum() - df_cleaned['Embarked'].isnull().sum())} registros")
+print(f"    OK Valores nulos en Embarked imputados: {(df['Embarked'].isnull().sum() - df_cleaned['Embarked'].isnull().sum())} registros")
 
 # 3.4 Crear variable FamilySize
 print("\n>>> Creando variable derivada 'FamilySize':")
@@ -106,7 +106,7 @@ print("Valores nulos después de limpieza:")
 missing_after = df_cleaned.isnull().sum()
 print(missing_after[missing_after > 0])
 if missing_after.sum() == 0:
-    print("✓ NO HAY VALORES NULOS - Dataset completamente limpio")
+    print("OK NO HAY VALORES NULOS - Dataset completamente limpio")
 
 # ============================================================================
 # 5. ANÁLISIS DE DUPLICADOS
@@ -144,7 +144,7 @@ print(f"\nOutliers en Fare (usando IQR): {len(outliers_fare)} registros")
 print(f"  - Rango típico: [0, {Q3_fare + 1.5*IQR_fare:.2f}]")
 print(f"  - Nota: Los outliers son pasajeros de primera clase con high fare (validados)")
 
-print("\n✓ ACCIÓN: Se conservan todos los outliers por su validez conceptual")
+print("\nOK ACCIÓN: Se conservan todos los outliers por su validez conceptual")
 
 # ============================================================================
 # 7. ESTADÍSTICAS BÁSICAS DEL DATASET LIMPIO
@@ -189,14 +189,14 @@ CAMBIOS REALIZADOS:
      Justificación: Captura dinámica familiar completa
 
 4. VALIDACIÓN:
-   - Valores nulos: ✓ 0 (Dataset completamente limpio)
-   - Duplicados completos: ✓ 0
-   - Outliers: ✓ Identificados pero CONSERVADOS (validez conceptual)
+   - Valores nulos: OK 0 (Dataset completamente limpio)
+   - Duplicados completos: OK 0
+   - Outliers: OK Identificados pero CONSERVADOS (validez conceptual)
 
 RESULTADO FINAL:
-  ✓ Dataset limpio: {df_cleaned.shape[0]} registros × {df_cleaned.shape[1]} variables
-  ✓ Sin valores faltantes
-  ✓ Listo para transformación y modelado
+  OK Dataset limpio: {df_cleaned.shape[0]} registros × {df_cleaned.shape[1]} variables
+  OK Sin valores faltantes
+  OK Listo para transformación y modelado
 """
 
 print(resumen)
@@ -205,7 +205,7 @@ print(resumen)
 # 9. GUARDAR DATASET LIMPIO
 # ============================================================================
 df_cleaned.to_csv(os.path.join(script_dir, "df_limpio.csv"), index=False)
-print(f"✓ Dataset limpio guardado en: df_limpio.csv\n")
+print(f"OK Dataset limpio guardado en: df_limpio.csv\n")
 
 print("="*80)
 print("PASO 3 COMPLETADO")

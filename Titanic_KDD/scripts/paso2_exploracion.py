@@ -41,7 +41,7 @@ print("="*80 + "\n")
 script_dir = os.path.dirname(os.path.abspath(__file__))
 df = pd.read_csv(os.path.join(script_dir, "df_original.csv"))
 
-print(f"✓ Dataset cargado: {df.shape[0]} filas × {df.shape[1]} columnas\n")
+print(f"OK Dataset cargado: {df.shape[0]} filas × {df.shape[1]} columnas\n")
 
 # ============================================================================
 # 2. ANÁLISIS DE SUPERVIVENCIA POR VARIABLES DEMOGRÁFICAS
@@ -184,7 +184,7 @@ print("2.8 GENERANDO VISUALIZACIONES")
 print("-"*80 + "\n")
 
 # Crear carpeta para gráficos
-graficos_dir = os.path.join(script_dir, "graficos")
+graficos_dir = os.path.join(script_dir, "..", "graficos")
 if not os.path.exists(graficos_dir):
     os.makedirs(graficos_dir)
 
@@ -241,7 +241,7 @@ for bar in bars:
 
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '01_supervivencia_basico.png'), dpi=300, bbox_inches='tight')
-print("✓ Gráfico 01 guardado: supervivencia_basico.png")
+print("OK Gráfico 01 guardado: supervivencia_basico.png")
 plt.close()
 
 # Figura 2: Distribuciones de edad y tarifa
@@ -268,7 +268,7 @@ ax2.legend()
 
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '02_distribuciones.png'), dpi=300, bbox_inches='tight')
-print("✓ Gráfico 02 guardado: distribuciones.png")
+print("OK Gráfico 02 guardado: distribuciones.png")
 plt.close()
 
 # Figura 3: Matriz de correlación
@@ -278,7 +278,7 @@ sns.heatmap(df_numeric.corr(), annot=True, fmt='.2f', cmap='coolwarm',
 ax.set_title('Matriz de Correlación - Variables Numéricas', fontweight='bold', fontsize=14)
 plt.tight_layout()
 plt.savefig(os.path.join(graficos_dir, '03_correlacion.png'), dpi=300, bbox_inches='tight')
-print("✓ Gráfico 03 guardado: correlacion.png")
+print("OK Gráfico 03 guardado: correlacion.png")
 plt.close()
 
 # ============================================================================
@@ -292,29 +292,29 @@ resumen = """
 VARIABLES CRÍTICAS IDENTIFICADAS:
 
 1. SEXO (Demográfica) - ALTAMENTE SIGNIFICATIVA
-   ✓ Mujeres: 74.20% de supervivencia
-   ✓ Hombres: 18.89% de supervivencia
+   OK Mujeres: 74.20% de supervivencia
+   OK Hombres: 18.89% de supervivencia
    → Las mujeres tuvieron 3.9x más probabilidad de sobrevivir
 
 2. CLASE SOCIOECONÓMICA - ALTAMENTE SIGNIFICATIVA
-   ✓ Primera clase: 62.96% de supervivencia
-   ✓ Segunda clase: 47.28% de supervivencia
-   ✓ Tercera clase: 24.24% de supervivencia
+   OK Primera clase: 62.96% de supervivencia
+   OK Segunda clase: 47.28% de supervivencia
+   OK Tercera clase: 24.24% de supervivencia
    → La clase fue un factor determinante
 
 3. EDAD (Demográfica) - SIGNIFICATIVA
-   ✓ Edad promedio sobrevivientes: 28.86 años
-   ✓ Edad promedio no sobrevivientes: 30.63 años
-   ✓ Niños menores de 15 años tuvieron mayor tasa de supervivencia
+   OK Edad promedio sobrevivientes: 28.86 años
+   OK Edad promedio no sobrevivientes: 30.63 años
+   OK Niños menores de 15 años tuvieron mayor tasa de supervivencia
 
 4. TARIFA (Socioeconómica) - ALTAMENTE SIGNIFICATIVA
-   ✓ Tarifa promedio sobrevivientes: £46.00
-   ✓ Tarifa promedio no sobrevivientes: £22.12
+   OK Tarifa promedio sobrevivientes: £46.00
+   OK Tarifa promedio no sobrevivientes: £22.12
    → Mayor tarifa = Mayor probabilidad de supervivencia
 
 5. TAMAÑO FAMILIAR (Demográfica) - RELEVANTE
-   ✓ Grupos pequeños (1-3 personas) tuvieron mejor tasa de supervivencia
-   ✓ Grupos grandes (4+ personas) tuvieron menor tasa de supervivencia
+   OK Grupos pequeños (1-3 personas) tuvieron mejor tasa de supervivencia
+   OK Grupos grandes (4+ personas) tuvieron menor tasa de supervivencia
 
 PATRONES OBSERVADOS:
 - "Mujeres y niños primero": Las políticas de evacuación favorecieron a mujeres
@@ -330,5 +330,5 @@ PRÓXIMOS PASOS:
 
 print(resumen)
 
-print("\n✓ PASO 2 COMPLETADO\n")
+print("\nOK PASO 2 COMPLETADO\n")
 print(f"Gráficos guardados en: {graficos_dir}")

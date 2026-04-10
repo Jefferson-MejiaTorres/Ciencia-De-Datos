@@ -27,11 +27,11 @@ print("="*80 + "\n")
 
 # Obtener la ruta de la carpeta actual del script
 script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(script_dir, "train.csv")
+csv_path = os.path.join(script_dir, "..", "datos", "train.csv")
 
 # Cargar el dataset
 df = pd.read_csv(csv_path)
-print("✓ Dataset cargado exitosamente\n")
+print("OK Dataset cargado exitosamente\n")
 
 # ============================================================================
 # 2. INFORMACIÓN GENERAL DEL DATASET
@@ -159,8 +159,8 @@ PRÓXIMOS PASOS:
 
 print(resumen)
 
-print("\n✓ PASO 1 COMPLETADO\n")
+print("\nOK PASO 1 COMPLETADO\n")
 
 # Guardar información para pasos posteriores
-df.to_csv(os.path.join(script_dir, "df_original.csv"), index=False)
+df.to_csv(os.path.join(script_dir, "..", "datos", "df_original.csv"), index=False)
 print(f"Dataset original guardado en: df_original.csv")

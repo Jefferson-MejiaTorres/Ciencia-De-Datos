@@ -6,6 +6,10 @@
 **Tema:** Proceso KDD Aplicado al Titanic  
 **Fecha:** 10 de Abril de 2026
 
+### Integrantes
+- **Jefferson David Mejia Torres** - CC 1004924867
+- **Daniel Felipe Contreras Caballero** - CC 1005077931
+
 ---
 
 ## CONTENIDO
@@ -532,28 +536,59 @@ El proceso KDD no solo creó un modelo predictivo útil, sino que extrajo **cono
 
 ## ANEXOS TÉCNICOS
 
-### A. Archivos Generados
+### A. Archivos Generados - Estructura Organizada
+
+```
+Titanic_KDD/                            # CARPETA PRINCIPAL
+├── INFORME_FINAL.md                   # Este documento (ARCHIVO PRINCIPAL)
+│
+├── scripts/                            # Carpeta con todos los scripts Python
+│   ├── paso1_carga.py                 # Script de carga y descripción
+│   ├── paso2_exploracion.py           # Script de análisis exploratorio (EDA)
+│   ├── paso3_limpieza.py             # Script de preprocesamiento
+│   ├── paso4_transformacion.py       # Script de transformación y feature eng.
+│   └── paso5_modelado.py             # Script de regresión logística
+│
+├── datos/                              # Carpeta con datasets CSV
+│   ├── train.csv                      # Dataset original (891 registros)
+│   ├── df_original.csv                # Dataset cargado limpio
+│   ├── df_limpio.csv                  # Dataset preprocesado
+│   └── df_transformado.csv            # Dataset transformado (listo para ML)
+│
+└── graficos/                           # Carpeta con visualizaciones
+    ├── 01_supervivencia_basico.png    # Gráficos demográficos y socioeconómicos
+    ├── 02_distribuciones.png          # Distribuciones de edad y tarifa
+    ├── 03_correlacion.png             # Matriz de correlación
+    ├── 04_matriz_confusion.png        # Precisión del modelo
+    ├── 05_importancia_variables.png   # Peso de cada variable
+    ├── 06_curva_roc.png               # Curva ROC del modelo (AUC=0.8569)
+    └── 07_distribucion_probabilidades.png  # Distribución de predicciones
+```
+
+#### Estructura de Directorios en Árbol
 
 ```
 Titanic_KDD/
-├── train.csv                    # Dataset original
-├── paso1_carga.py              # Script de carga y descripción
-├── paso2_exploracion.py         # Script de análisis exploratorio
-├── paso3_limpieza.py           # Script de preprocesamiento
-├── paso4_transformacion.py     # Script de transformación
-├── paso5_modelado.py           # Script de modelado
-├── df_original.csv             # Dataset original limpio
-├── df_limpio.csv               # Dataset preprocesado
-├── df_transformado.csv         # Dataset transformado
-├── graficos/
-│   ├── 01_supervivencia_basico.png
-│   ├── 02_distribuciones.png
-│   ├── 03_correlacion.png
-│   ├── 04_matriz_confusion.png
-│   ├── 05_importancia_variables.png
-│   ├── 06_curva_roc.png
-│   └── 07_distribucion_probabilidades.png
-└── INFORME_FINAL.md            # Este documento
+ ├─ INFORME_FINAL.md
+ ├─ scripts/
+ │  ├─ paso1_carga.py
+ │  ├─ paso2_exploracion.py
+ │  ├─ paso3_limpieza.py
+ │  ├─ paso4_transformacion.py
+ │  └─ paso5_modelado.py
+ ├─ datos/
+ │  ├─ train.csv (original)
+ │  ├─ df_original.csv
+ │  ├─ df_limpio.csv
+ │  └─ df_transformado.csv
+ └─ graficos/
+    ├─ 01_supervivencia_basico.png
+    ├─ 02_distribuciones.png
+    ├─ 03_correlacion.png
+    ├─ 04_matriz_confusion.png
+    ├─ 05_importancia_variables.png
+    ├─ 06_curva_roc.png
+    └─ 07_distribucion_probabilidades.png
 ```
 
 ### B. Configuración Técnica
@@ -583,8 +618,4 @@ Titanic_KDD/
 4. Data Mining: Practical Machine Learning Tools and Techniques
 
 ---
-
-**Informe Compilado:** 10 de Abril de 2026  
-**Estado:** ✓ COMPLETADO  
-**Calificación Esperada:** Cumple todos los criterios de la rúbrica de evaluación (100%)
 
