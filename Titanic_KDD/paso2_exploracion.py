@@ -17,13 +17,19 @@ Objetivo específico:
 import pandas as pd
 import numpy as np
 import os
+import sys
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 
-# Configurar estilo de gráficos
-plt.style.use('seaborn-v0_8-darkgrid')
-sns.set_palette("husl")
+# Configurar encoding para Windows
+if sys.platform.startswith('win'):
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+# Configurar matplotlib para no usar interfaz gráfica
+import matplotlib
+matplotlib.use('Agg')
 
 # ============================================================================
 # 1. CARGA DE DATOS
