@@ -34,6 +34,7 @@ print("="*80 + "\n")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 df = pd.read_csv(os.path.join(script_dir, "df_limpio.csv"))
+df_original = pd.read_csv(os.path.join(script_dir, "df_original.csv"))
 print(f"Dataset limpio cargado: {df.shape[0]} filas x {df.shape[1]} columnas\n")
 
 # ============================================================================
@@ -136,7 +137,7 @@ for i in range(1, 5):
 # 4.4 HasCabin - Indicador de información de camarote
 print("\n>>> Feature 4: 'HasCabin' (¿Tiene información de camarote?)")
 print("    Definición: Conocer el camarote implicaba acceso/recursos")
-df_transformed['HasCabin'] = df['Cabin'].notna().astype(int)
+df_transformed['HasCabin'] = df_original['Cabin'].notna().astype(int)
 print(f"    Frecuencia: {df_transformed['HasCabin'].sum()} con camarote ({df_transformed['HasCabin'].sum()/len(df_transformed)*100:.1f}%)")
 
 # 4.5 HigherClass - Indicador de clase alta
