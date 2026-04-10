@@ -18,8 +18,9 @@
 3. [Comprensión del Problema](#comprensión-del-problema)
 4. [Descripción de Datos](#descripción-de-datos)
 5. [Proceso KDD Detallado](#proceso-kdd-detallado)
-6. [Resultados y Descubrimientos](#resultados-y-descubrimientos)
-7. [Conclusiones](#conclusiones)
+6. [Visualizaciones](#visualizaciones)
+7. [Resultados y Descubrimientos](#resultados-y-descubrimientos)
+8. [Conclusiones](#conclusiones)
 
 ---
 
@@ -376,6 +377,214 @@ LogisticRegression(
 ```
 
 **Convergencia:** ✓ Exitosa en 4 iteraciones
+
+---
+
+## VISUALIZACIONES
+
+Este proyecto genera **7 gráficos profesionales** que facilitan la interpretación del proceso KDD y los resultados del análisis. Cada visualización está diseñada para comunicar hallazgos específicos sobre la supervivencia en el Titanic.
+
+### 📊 Gráfico 1: Análisis de Supervivencia - Variables Demográficas y Socioeconómicas
+
+**Archivo:** `graficos/01_supervivencia_basico.png`
+
+**Contenido:** 4 subgráficos que muestran:
+
+1. **Supervivencia por Sexo (izq. superior):**
+   - Gráfico de barras comparando cantidad de sobrevivientes vs no sobrevivientes
+   - Demuestra claramente la política de "mujeres y niños primero"
+   - Mujeres: 233 sobrevivieron (74.2%)
+   - Hombres: 109 sobrevivieron (18.89%)
+
+2. **Tasa de Supervivencia por Sexo (der. superior):**
+   - Porcentaje de supervivencia por género
+   - Visualiza el contraste dramático entre géneros
+   - Diferencia de **3.93 veces** a favor de las mujeres
+
+3. **Supervivencia por Clase de Billete (izq. inferior):**
+   - Categorías de 1ª, 2ª y 3ª clase
+   - Muestra el efecto socioeconómico en supervivencia
+   - 1ª clase: 136 sobrevivieron
+   - 3ª clase: 119 sobrevivieron (pero sobre mucha menos gente)
+
+4. **Tasa de Supervivencia por Clase (der. inferior):**
+   - Porcentaje por clase social
+   - 1ª clase: 62.96%
+   - 2ª clase: 47.28%
+   - 3ª clase: 24.24%
+
+**Interpretación:** El gráfico revela que sexo y clase fueron factores determinantes en supervivencia.
+
+---
+
+### 📈 Gráfico 2: Análisis de Distribuciones - Edad y Tarifa
+
+**Archivo:** `graficos/02_distribuciones.png`
+
+**Contenido:** 2 histogramas que comparan distribuciones:
+
+1. **Distribución de Edad por Supervivencia (izquierda):**
+   - Histogramas superpuestos (sobrevivientes en verde, no sobrevivientes en rojo)
+   - Rango: 0 a 80 años
+   - Observación clave: Pico notable en edades 0-10 (niños con alta tasa de supervivencia)
+   - Media de edad: 30.63 años (no sobrevivieron) vs 28.34 años (sobrevivieron)
+
+2. **Distribución de Tarifa por Supervivencia (derecha):**
+   - Histogramas en libras esterlinas
+   - Rango: £0 a £512
+   - Observación: Sobrevivientes concentrados en tarifas mayores
+   - Tarifa promedio: £22.12 (no sobrevivieron) vs £48.40 (sobrevivieron)
+   - Diferencia de **2.19 veces** en tarifa media
+
+**Interpretación:** Pasajeros mayores pagaban más (mejor ubicación en el barco) y tenían mayor acceso a botes salvavidas.
+
+---
+
+### 🔥 Gráfico 3: Matriz de Correlación - Variables Numéricas
+
+**Archivo:** `graficos/03_correlacion.png`
+
+**Contenido:** Heatmap de 7x7 mostrando correlaciones pairwise:
+
+**Variables analizadas:**
+- Survived (target)
+- Pclass
+- Age
+- SibSp (hermanos/cónyuge)
+- Parch (padres/hijos)
+- Fare
+- FamilySize
+
+**Correlaciones clave con Survived:**
+- **Pclass: -0.34** (Clase negativa = menor supervivencia)
+- **Age: -0.08** (Edad mayor = menor supervivencia, pero débil)
+- **Fare: +0.26** (Mayor tarifa = mayor supervivencia)
+- **FamilySize: +0.02** (Efecto casi nulo directo)
+
+**Color scheme:**
+- Rojo oscuro: Correlación positiva fuerte
+- Azul oscuro: Correlación negativa fuerte
+- Beige: Correlación débil o nula
+
+**Interpretación:** La matriz revela multicolinealidad entre SibSp/Parch (correlación 0.89) pero relaciones importantes con el target.
+
+---
+
+### 🎯 Gráfico 4: Matriz de Confusión - Evaluación del Modelo
+
+**Archivo:** `graficos/04_matriz_confusion.png`
+
+**Contenido:** Matriz 2x2 con escala de colores (azul oscuro = valores altos):
+
+```
+                  Predicción
+                  No Sobrevivió   Sobrevivió
+Realidad No S.         97               13      
+        Sobrevivió     22               47       
+```
+
+**Métricas derivadas:**
+- **Verdaderos Negativos (TN):** 97 → Correctamente clasificados
+- **Falsos Positivos (FP):** 13 → Error tipo I
+- **Falsos Negativos (FN):** 22 → Error tipo II (pasajeros que murieron, predijo supervivencia)
+- **Verdaderos Positivos (TP):** 47 → Correctamente identificados
+
+**Rendimiento:**
+- **Exactitud:** 80.45% = (97+47)/179
+- **Precisión:** 78.33% = 47/(47+13)
+- **Recall (Sensibilidad):** 68.12% = 47/(47+22)
+- **Especificidad:** 88.18% = 97/(97+13)
+
+**Interpretación:** El modelo clasifica correctamente 4 de 5 casos; mejor en identificar no-sobrevivientes que sobrevivientes.
+
+---
+
+### 📊 Gráfico 5: Importancia de Variables - Coeficientes del Modelo
+
+**Archivo:** `graficos/05_importancia_variables.png`
+
+**Contenido:** Gráfico de barras horizontal mostrando coeficientes de regresión logística:
+
+**Variables ordenadas por magnitud:**
+
+| Ranking | Variable | Coeficiente | Impacto |
+|---------|----------|------------|---------|
+| 1️⃣ | Sex | +2.494 | ⭐⭐⭐ CRÍTICA |
+| 2️⃣ | HasCabin | +0.904 | ⭐⭐ Importante |
+| 3️⃣ | IsChild | +0.842 | ⭐⭐ Importante |
+| 4️⃣ | IsAlone | -0.725 | ⭐⭐ Reduce |
+| 5️⃣ | HigherClass | +0.643 | ⭐ Relevante |
+| 6️⃣ | FamilyGroupSize | -0.435 | ⭐ Reduce |
+| 7️⃣ | Embarked_S | -0.425 | ⭐ Reduce |
+| 8️⃣ | Pclass | -0.364 | ⭐ Reduce |
+
+**Código de colores:**
+- 🟢 Verde: Coeficientes positivos (aumentan supervivencia)
+- 🔴 Rojo: Coeficientes negativos (reducen supervivencia)
+
+**Conclusión:** Sex domina completamente el modelo con impacto **12.16 veces** mayor de probabilidad.
+
+---
+
+### 📉 Gráfico 6: Curva ROC - Análisis del Modelo
+
+**Archivo:** `graficos/06_curva_roc.png`
+
+**Contenido:** Curva ROC (Receiver Operating Characteristic) con área bajo la curva (AUC):
+
+**Ejes:**
+- **X (Horizontal):** Tasa de Falsos Positivos (1 - Especificidad)
+- **Y (Vertical):** Tasa de Verdaderos Positivos (Sensibilidad)
+
+**Características:**
+- **Línea azul:** Curva ROC del modelo logístico
+- **Línea punteada gris:** Clasificador aleatorio (referencia)
+- **AUC (Área bajo la curva):** **0.8569** ⭐⭐⭐
+
+**Interpretación del AUC:**
+- **0.50:** Clasificador completamente aleatorio
+- **0.70-0.80:** Discriminación aceptable
+- **0.80-0.90:** Discriminación excelente
+- **0.90-1.00:** Discriminación excepcional
+
+**Conclusión:** AUC=0.8569 indica **EXCELENTE capacidad predictiva** del modelo. El modelo discrimina bien entre sobrevivientes y no-sobrevivientes.
+
+---
+
+### 📐 Gráfico 7: Distribución de Probabilidades Predichas
+
+**Archivo:** `graficos/07_distribucion_probabilidades.png`
+
+**Contenido:** Histograma superpuesto mostrando distribución de probabilidades:
+
+**Ejes:**
+- **X:** Probabilidad Predicha de Supervivencia (0 a 1)
+- **Y:** Frecuencia (cantidad de pasajeros)
+- **Colores:** Rojo = No sobrevivieron (reales), Verde = Sobrevivieron (reales)
+
+**Patrones observados:**
+
+1. **No sobrevivientes (rojo):**
+   - Mayoría concentrada en probabilidades bajas (0 a 0.3)
+   - Pico alto alrededor de 0.1
+   - Cola derecha en probabilidades altas (falsos negativos)
+
+2. **Sobrevivientes (verde):**
+   - Mayoría concentrada en probabilidades altas (0.7 a 1.0)
+   - Pico importante alrededor de 0.85
+   - Cola izquierda en probabilidades bajas (falsos positivos)
+
+**Línea punteada vertical:** Umbral de decisión (probabilidad = 0.5)
+
+**Interpretación:** La separación clara entre distribuciones roja y verde indica que el modelo aprende patrones significativos y realiza predicciones bien calibradas. La superposición en el centro refleja los casos difíciles (casos límite donde el modelo es menos seguro).
+
+---
+
+**Resumen de Gráficos:**
+- ✅ 7 visualizaciones PNG generadas automáticamente
+- ✅ Resolución: Alto DPI para impresión profesional
+- ✅ Formato: Compatible con cualquier editor/presentador
+- ✅ Carpeta destinada: `graficos/`
 
 ---
 
